@@ -1,0 +1,20 @@
+# -*- coding:utf-8 -*-
+class Solution:
+    # array 二维列表
+    def Find(self, target, array):
+        # write code here
+        rows = len(array)
+        cols = len(array[0])
+        if rows > 0 and cols > 0:
+            row = 0
+            col = cols - 1
+            while row < rows and col >= 0:
+                if target == array[row][col]:
+                    return True
+                elif target < array[row][col]:
+                    col -= 1
+                else:
+                    row +=1
+        return False
+        
+        第六和七行原本是用array.shape去得到行和列，没有通过，应该是刷题提供的是python2.7.3
