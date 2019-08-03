@@ -1,0 +1,29 @@
+class Solution:
+    # 返回从尾部到头部的列表值序列，例如[1,2,3]
+    def printListFromTailToHead(self, listNode):
+        # write code here
+        ArrayList = []
+        while listNode:
+            ArrayList.append(listNode.val)
+            listNode = listNode.next
+        return list(reversed(ArrayList))
+        
+
+class Solution:
+    # 返回从尾部到头部的列表值序列，例如[1,2,3]
+    def printListFromTailToHead(self, listNode):
+        # write code here
+        ArrayList = []
+        while listNode:
+            ArrayList.insert(0, listNode.val)
+            listNode = listNode.next
+        return ArrayList
+        
+
+class Solution:
+    # 返回从尾部到头部的列表值序列，例如[1,2,3]
+    def printListFromTailToHead(self, listNode):
+        # write code here
+        if listNode == None:
+            return []
+        return (self.printListFromTailToHead(listNode.next) + [listNode.val])
