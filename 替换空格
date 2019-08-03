@@ -27,7 +27,7 @@ class Solution:
         index_new = new_length - 1
         new_string = [None for i in range(new_length)]
 
-        while index_origin >= 0 & (index_new > index_origin):
+        while index_origin >= 0 & (index_new >= index_origin):#或者不要后面那个条件感觉也可以
             if s[index_origin] == ' ':
                 new_string[index_new] = '0'
                 index_new -= 1
