@@ -1,0 +1,19 @@
+class Solution:
+    def minNumberInRotateArray(self, rotateArray):
+        left = 0
+        right = len(rotateArray)-1
+        while left <= right:
+            if left == right - 1:
+                return rotateArray[right]
+            mid = (left + right)//2
+            if rotateArray[left] == rotateArray[mid] and rotateArray[mid] == rotateArray[right]:
+                res = rotateArray[left]
+                for i in range(left,right+1):
+                    if rotateArray[i] < res :
+                        res = rotateArray[i]
+                return res
+            if rotateArray[left] <= rotateArray[mid]:
+                left = mid
+            elif rotateArray[right] >= rotateArray[mid]:
+                right = mid
+        return rotateArray[right]
