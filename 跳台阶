@@ -4,3 +4,10 @@ class Solution:
         while number > len(num):
             num.append(num[-2]+num[-1])
         return num[number-1]
+
+
+变态跳台阶（思路：每一次选择跳或不跳，无论怎么跳都可以看做进行了n次选择，选择跳0个也就是不跳或者跳1、2……，最后一次会因为前n-1次的结果而固定）
+class Solution:
+    def jumpFloorII(self, number):
+        # write code here
+        return 2**(number-1)
