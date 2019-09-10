@@ -1,0 +1,6 @@
+class Solution:
+    def jumpFloor(self, number):
+        num = [1,2]
+        while number > len(num):
+            num.append(num[-2]+num[-1])
+        return num[number-1]
