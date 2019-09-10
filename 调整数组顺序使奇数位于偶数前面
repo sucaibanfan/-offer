@@ -1,0 +1,9 @@
+class Solution:
+    def reOrderArray(self, array):
+        # write code here
+        odd = []
+        for i in range(0,len(array)):
+            if array[i]%2 == 1:
+                odd.append(array[i])
+        even = [i for i in array if i not in odd]
+        return odd+even
