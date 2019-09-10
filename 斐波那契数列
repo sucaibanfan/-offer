@@ -1,0 +1,14 @@
+class Solution:
+    def __init__(self):
+        self.keep = {0:0,1:1}
+    def Fibonacci(self, n):
+        # write code here
+        if n in self.keep:
+            return self.keep[n]
+        else:
+            fn = self.Fibonacci(n-1)+self.Fibonacci(n-2)
+            self.keep[n] = fn
+            return fn
+           
+直接递归解法由于有很多的重复计算，因此会超时。
+所以可以使用字典保存计算过了的数字，省去了重复的计算，速度很快。
