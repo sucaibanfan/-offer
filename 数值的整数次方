@@ -1,0 +1,13 @@
+class Solution:
+    def Power(self, base, exponent):
+        # write code here
+        if base == 0:
+            return 0
+        base = base**abs(exponent)
+        if exponent < 0:
+            return 1/base
+        else:
+            return base
+            
+            
+别忘了次幂小于0的情况
