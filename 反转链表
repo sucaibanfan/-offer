@@ -1,0 +1,17 @@
+class Solution:
+    # 返回ListNode
+    def ReverseList(self, pHead):
+        # write code here
+        if not pHead:
+            return None
+        p = pHead
+        q = pHead.next
+        pHead.next = None
+        if not q:
+            return pHead
+        while q:
+            p = q
+            q = q.next
+            p.next = pHead
+            pHead = p
+        return pHead
