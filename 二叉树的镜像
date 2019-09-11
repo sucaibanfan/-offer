@@ -1,0 +1,13 @@
+注意审题，是将原二叉树变换为镜像，一开始重新建了一棵树然后递归左子树等于原来的右子树，方法不对
+直接原二叉树判断，根节点在的话，左右子树互换，再同样对子树进行互换操作。
+class Solution:
+    # 返回镜像树的根节点
+    def Mirror(self, root):
+        # write code here
+        if root:
+            root.left,root.right = root.right,root.left
+            if root.left:
+                self.Mirror(root.left)
+            if root.right:
+                self.Mirror(root.right)
+        return root
