@@ -1,0 +1,24 @@
+class Solution:
+    # 返回合并后列表
+    def Merge(self, pHead1, pHead2):
+        # write code here
+        if not pHead1:
+            return pHead2
+        if not pHead2:
+            return pHead1
+        head = h = ListNode(None)
+        p = pHead1
+        q = pHead2
+        while p and q:
+            if p.val <= q.val:
+                head.next = p
+                p = p.next
+            else:
+                head.next = q
+                q = q.next
+            head = head.next
+        if p:
+            head.next = p
+        if q:
+            head.next = q
+        return h.next
