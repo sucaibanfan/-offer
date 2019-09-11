@@ -1,0 +1,18 @@
+思路：从A的根节点判断是否和B相同，然后是左右子树和B是否有相同结构，三种之一都可以
+如果B节点比较完了，那说明相同，如果两个节点值不相等或者A比较完了B还有节点那返回False
+class Solution:
+    def HasSubtree(self, pRoot1, pRoot2):
+        # write code here
+        if not pRoot2 or not pRoot1:
+            return False
+        else:
+            l = self.HasSubtree(pRoot1.left, pRoot2)
+            r = self.HasSubtree(pRoot1.right, pRoot2)
+        return l or r or self.isSubtree(pRoot1, pRoot2)
+    def isSubtree(self, A, B):
+        if not B:
+            return True
+        if not A or A.val != B.val:
+            return False
+        return self.isSubtree(A.left, B.left) and self.isSubtree(A.right, B.right)
+       
