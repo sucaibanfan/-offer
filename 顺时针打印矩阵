@@ -1,0 +1,18 @@
+class Solution:
+    # matrix类型为二维列表，需要返回列表
+    def printMatrix(self, matrix):
+        out = []
+        while matrix:
+            out += matrix.pop(0)
+            if matrix and matrix[0]:
+                for row in matrix:
+                    out.append(row.pop())
+            if matrix:
+                out += matrix.pop()[::-1]
+            if matrix and matrix[0]:
+                for row in matrix[::-1]:
+                    out.append(row.pop(0))
+        return out
+        
+        
+判断条件里要加上 matrix[0]，因为 [[],[]] 判断是不为空的
