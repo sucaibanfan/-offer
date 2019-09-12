@@ -1,0 +1,20 @@
+# -*- coding:utf-8 -*-
+class Solution:
+    def __init__(self):
+        self.list = []
+        self.minStack = []
+    def push(self, node):
+        # write code here
+        self.list.append(node)
+        if not self.minStack or node <= self.minStack[-1]:
+            self.minStack.append(node)
+    def pop(self):
+        # write code here
+        if self.list[-1] == self.minStack[-1]:
+            self.minStack.pop()
+        self.list.pop()
+    def top(self):
+        return self.list[-1]
+    def min(self):
+        # write code here
+        return self.minStack[-1]
