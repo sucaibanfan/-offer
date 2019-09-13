@@ -1,0 +1,18 @@
+用三个列表，列表1是返回的结果，列表2保存当前遍历的点（初始是根节点），列表3保存当前点的左右节点，然后循环把列表3作为列表2
+class Solution:
+    # 返回从上到下每个节点值列表，例：[1,2,3]
+    def PrintFromTopToBottom(self, root):
+        if root is None:
+            return []
+        res = []
+        cur = [root]
+        while cur:
+            landr = []
+            for i in cur:
+                if i.left:
+                    landr.append(i.left)
+                if i.right:
+                    landr.append(i.right)
+                res.append(i.val)
+            cur = landr
+        return res
