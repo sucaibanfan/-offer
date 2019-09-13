@@ -1,0 +1,36 @@
+注意空列表是非二叉搜索树，可能只有左子树或右子树，所以splitindex应该在左子树里面赋值，或者右子树里面赋值的话加上条件判断是不是还等于初始值-1
+class Solution:
+    def VerifySquenceOfBST(self, sequence):
+        # write code here
+        if len(sequence) == 0:
+            return False
+        else:
+            root = sequence[-1]
+            del sequence[-1]
+            #分别存放左子树和右子树的数据
+            lefttree = []
+            righttree = []
+            ##记录左子树的最后一个结点位置
+            splitindex = -1
+            for i in range(len(sequence)):
+                if sequence[i]<root:
+                    lefttree.append(sequence[i])
+                    splitindex = i
+                else:
+                    break
+            for i in range(splitindex+1,len(sequence)):
+                if sequence[i]>root:
+                    righttree.append(sequence[i])
+                else:
+                    return False
+            if len(lefttree)<=1:
+                left = True
+            else:
+                #递归左子树
+                left = self.VerifySquenceOfBST(lefttree)
+            if len(righttree)<=1:
+                right = True
+            else:
+                #递归右子树
+                right = self.VerifySquenceOfBST(righttree)
+            return left and right
