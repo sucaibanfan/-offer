@@ -1,0 +1,46 @@
+先把特殊情况列出来，两个序列为空、长度不相等、元素不完全相等都为False，如果两个序列完全相等为True
+普遍情况，找到弹出序列中第一个索引小于popV[0]的元素，那么后面的元素在压入栈的序列中的索引都要小于这个元素
+第一个版本通过了，但是有个问题，如果弹出栈中这个元素和第一个元素中间隔了三个及以上，那么中间隔开这段也要服从刚才那个规则
+class Solution:
+    def IsPopOrder(self, pushV, popV):
+        if not (len(pushV) == len(popV) or pushV or popV):
+            return False
+        if pushV == popV:
+            return True
+        if len([i for i in popV if i not in pushV]) != 0:
+            return False
+        for i in range(1,len(popV)):
+            if pushV.index(popV[i]) < pushV.index(popV[0]):
+                a = i
+                break
+        for i in range(a+1,len(popV)):
+            if pushV.index(popV[i]) > pushV.index(popV[a]):
+                return False
+        return True
+        
+        
+第二版本
+class Solution:
+    def IsPopOrder(self, pushV, popV):
+        if not (len(pushV) == len(popV) or pushV or popV):
+            return False
+        if pushV == popV:
+            return True
+        if len([i for i in popV if i not in pushV]) != 0:
+            return False
+        a = self.findleq(pushV, popV)
+        if a >= 4:
+            b = self.findleq(self,pushV, popV[1:a])
+            return self.isorder(pushV, popV,a) and self.isorder(pushV, popV[1:a],b)
+        else:
+            return self.isorder(pushV, popV,a)
+        
+    def findleq(self,pushV, popV):
+        for i in range(1,len(popV)):
+            if pushV.index(popV[i]) < pushV.index(popV[0]):
+                return i
+    def isorder(self, pushV, popV,a):
+        for i in range(a+1,len(popV)):
+            if pushV.index(popV[i]) > pushV.index(popV[a]):
+                return False
+        return True
