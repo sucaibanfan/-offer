@@ -1,0 +1,15 @@
+递归思想，根据元素个数排序，用一个lambda函数很方便
+class Solution:
+    # 返回二维列表，内部每个列表表示找到的路径
+    def FindPath(self, root, expectNumber):
+        if not root:
+            return []
+        if root.val == expectNumber and root.left is None and root.right is None:
+            return [[root.val]]
+        res = []
+        left = self.FindPath(root.left, expectNumber-root.val)
+        right = self.FindPath(root.right, expectNumber-root.val)
+        for item in left+right:
+            res.append([root.val]+item)
+        res = sorted(res,key=lambda i:len(i),reverse=True)
+        return res
