@@ -1,0 +1,15 @@
+思路：每一次直接选择剩下列表中最小的元素
+class Solution:
+    def GetLeastNumbers_Solution(self, tinput, k):
+        # write code here
+        if k <= 0 or tinput == None or len(tinput)<k:
+            return []
+        res = []
+        s = tinput
+        while len(res) < k:
+            num = min(s)
+            res.append(num)
+            i = s.index(num)
+            s = s[:i]+s[i+1:]
+        return res
+        
