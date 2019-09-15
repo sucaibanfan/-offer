@@ -1,0 +1,16 @@
+思路：把所有排列储存再set以后sort输出，全部排列另写一个函数，递归调用，每一个位置的字符串都是可取长度里面任选一个，直到全部选完把次序存入列表。
+class Solution:
+    def Permutation(self, ss):
+        # write code here
+        if not ss:
+            return []
+        res = []
+        self.sort(ss,res,"")
+        return sorted(list(set(res)))
+    
+    def sort(self,ss,res,path):
+        if not ss:
+            res.append(path)
+        else:
+            for i in range(len(ss)):
+                self.sort(ss[:i]+ss[i+1:],res,path+ss[i])
