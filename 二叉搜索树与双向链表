@@ -1,0 +1,21 @@
+参考链接：https://blog.csdn.net/jiangjiang_jian/article/details/81637574
+递归思想，首先self.Convert(pRootOfTree.left)会找到二叉搜索树最左边的叶子节点并将ListHead和ListTail都指向它，
+接下来执行的是最左叶子节点和它的根节点之间的指针相连，然后将ListTail指向根节点，再后面是根节点的右节点，指针联系建立好后，ListTail指向这个右节点
+所以，ListHead找到最左边的叶节点，ListTail一直指向当前更新的节点
+class Solution:
+    def __init__(self):
+        self.ListHead = None
+        self.ListTail = None
+    def Convert(self, pRootOfTree):
+        if not pRootOfTree:
+            return
+        self.Convert(pRootOfTree.left)
+        if self.ListHead is None:
+            self.ListHead = pRootOfTree
+            self.ListTail = pRootOfTree
+        else:
+            self.ListTail.right = pRootOfTree
+            pRootOfTree.left = self.ListTail
+            self.ListTail = pRootOfTree         
+        self.Convert(pRootOfTree.right)
+        return self.ListHead 
