@@ -1,0 +1,15 @@
+思路：把数组变为字符串进行比较，用二分、递归思想
+class Solution:
+    def PrintMinNumber(self, numbers):
+        # write code here
+        if not numbers:
+            return ""
+        mid = numbers[len(numbers)//2]
+        left,right = [],[]
+        numbers.remove(mid)
+        for num in numbers:
+            if str(num)+str(mid) >= str(mid)+str(num):
+                right.append(num)
+            else:
+                left.append(num)
+        return str(int(self.PrintMinNumber(left)+str(mid)+self.PrintMinNumber(right)))
