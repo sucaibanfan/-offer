@@ -1,0 +1,10 @@
+# -*- coding:utf-8 -*-
+class Solution:
+    def FindGreatestSumOfSubArray(self, array):
+        # write code here
+        maxsum = array[0]
+        res = maxsum
+        for i in range(1,len(array)):
+            maxsum = max(maxsum+array[i],array[i])
+            res = max(maxsum,res)
+        return res
