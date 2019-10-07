@@ -1,3 +1,4 @@
+容易犯的错误，maxsum设为0，数组中可能最大的和为负数。
 # -*- coding:utf-8 -*-
 class Solution:
     def FindGreatestSumOfSubArray(self, array):
