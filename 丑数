@@ -1,0 +1,22 @@
+直接编写函数用整除判断一个数是否是丑数，然后主函数里再调用，不满足时间空间限制
+参照网上的思路：从第一个丑数开始乘2,3,5，把小的那个加入列表，再依次乘，列表不能有重复，所以用min，有相同的比如6（3*2,2*3），列表只会append一个6，
+但是2,3对应的索引都加了1
+class Solution:
+    def GetUglyNumber_Solution(self, index):
+        # write code here
+        if index == 0:
+            return 0
+        res = [1]
+        n = 1
+        n2,n3,n5 = 0, 0, 0
+        while n < index:
+            val = min(res[n2]*2,res[n3]*3,res[n5]*5)
+            res.append(val)
+            if val == res[n2]*2:
+                n2 += 1
+            if val == res[n3]*3:
+                n3 += 1
+            if val == res[n5]*5:
+                n5 += 1
+            n += 1
+        return res[-1]
