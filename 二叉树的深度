@@ -1,0 +1,27 @@
+递归：
+class Solution:
+    def TreeDepth(self, pRoot):
+        # write code here
+        if pRoot is None:
+            return 0
+        depth = max(self.TreeDepth(pRoot.left),self.TreeDepth(pRoot.right))
+        return 1+depth
+非递归：
+class Solution:
+    def TreeDepth(self, pRoot):
+        # write code here
+        if pRoot is None:
+            return 0
+        tree = []
+        tree.append(pRoot)
+        depth = 0
+        while tree:
+            temp = []
+            for node in tree:
+                if node.left:
+                    temp.append(node.left)
+                if node.right:
+                    temp.append(node.right)
+            tree = temp
+            depth += 1
+        return depth
