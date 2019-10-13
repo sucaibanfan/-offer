@@ -1,0 +1,14 @@
+思路简单，代码简单，但是通过率只有50%。
+先将原序列排序，然后从排完序的数组中取出最小的，它在原数组中的位置表示有多少比它大的数在它前面，每取出一个在原数组中删除该元素，
+保证后面取出的元素在原数组中是最小的，这样其位置才能表示有多少比它大的数在它前面，即逆序对数。
+# -*- coding:utf-8 -*-
+class Solution:
+    def InversePairs(self, data):
+        # write code here
+        sortdata = sorted(data)
+        count = 0
+        for i in sortdata:
+            pos = data.index(i)
+            count += pos
+            data.remove(i)
+        return count%1000000007
