@@ -1,0 +1,15 @@
+先写一个递归求二叉树深度的函数，然后根据定义比较
+class Solution:
+    def TreeDepth(self, pRoot):
+        if pRoot is None:
+            return 0
+        depth = max(self.TreeDepth(pRoot.left),self.TreeDepth(pRoot.right))
+        return 1+depth
+    def IsBalanced_Solution(self, pRoot):
+        if pRoot is None:
+            return True
+        left = self.TreeDepth(pRoot.left)
+        right = self.TreeDepth(pRoot.right)
+        if abs(left-right) > 1:
+            return False
+        return self.IsBalanced_Solution(pRoot.left) and self.IsBalanced_Solution(pRoot.right)
