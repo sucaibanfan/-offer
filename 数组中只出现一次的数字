@@ -1,0 +1,15 @@
+利用栈的思想，排好序后只要出现相同，元素出栈，最后剩下的就是只出现一次的元素
+class Solution:
+    # 返回[a,b] 其中ab是出现一次的两个数字
+    def FindNumsAppearOnce(self, array):
+        # write code here
+        if len(array) < 2:
+            return []
+        sortlist = sorted(array)
+        stackIn = []
+        for i in range(len(sortlist)):
+            if len(stackIn) > 0 and stackIn[-1] == sortlist[i]:
+                stackIn.remove(sortlist[i])
+            else:
+                stackIn.append(sortlist[i])
+        return stackIn
