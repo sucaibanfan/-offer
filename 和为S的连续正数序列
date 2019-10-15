@@ -1,0 +1,19 @@
+首先从1开始往上加，一旦超过，向下减去，然后往上加，注意循环条件，最小的元素要小于和的二分之一
+class Solution:
+    def FindContinuousSequence(self, tsum):
+        # write code here
+        res = []
+        start,end = 1,2
+        mid = (tsum+1)/2
+        cursum = start+end
+        while start < mid:
+            if cursum == tsum:
+                res.append(range(start,end+1))
+            while cursum > tsum and start < mid:
+                   cursum -= start
+                   start += 1
+                   if cursum == tsum:
+                       res.append(range(start,end+1))
+            end += 1
+            cursum += end
+        return res
