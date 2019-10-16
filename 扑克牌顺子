@@ -1,0 +1,19 @@
+思路：先对数组排序，然后统计0的个数，从第一个非0开始，比较前后是否相等，一旦相等则False，不相等的话统计相差多少，如果刚好相差1是不用补的，所以要减去1
+最后需要补充的是否小于等于0的个数
+class Solution:
+    def IsContinuous(self, numbers):
+        # write code here
+        if not numbers:
+            return False
+        numbers.sort()
+        zeros = numbers.count(0)
+        left = zeros
+        right = left + 1
+        gaps = 0
+        while right < len(numbers):
+            if numbers[left] == numbers[right]:
+                return False
+            gaps += numbers[right]-numbers[left]-1
+            left = right
+            right += 1
+        return gaps <= zeros
