@@ -1,0 +1,33 @@
+首先想到的是用环形链表解决，但是要先定义链表节点，然后创建链表，再做循环
+class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+class Solution:
+    def LastRemaining_Solution(self, n, m):
+        # write code here
+        if n <= 0 or m <= 0:
+            return -1
+        q = head = ListNode(0)
+        for i in range(1,n):
+            q.next = ListNode(i)
+            q = q.next
+        q.next = head
+        while n > 1:
+            for i in range(1,m):
+                head = head.next
+            head.val = head.next.val
+            head.next = head.next.next
+            n -= 1
+        return head.val
+ 如果利用数学推导，可以很简单快捷的解决，上一个是接近400ms，这一个不超过30ms，时间相差较大
+ 数学推导可以参考https://blog.csdn.net/fuxuemingzhu/article/details/79702974
+ class Solution:
+    def LastRemaining_Solution(self, n, m):
+        # write code here
+        if n <= 0 or m <= 0:
+            return -1
+        res = 0
+        for i in range(2,n+1):
+            res = (res + m)%i
+        return res
