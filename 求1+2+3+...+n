@@ -1,0 +1,9 @@
+求1+2+3+...+n
+求和，肯定是递归了，但是不允许使用if条件语句，因此可以借助与运算与短路求值原理，来限制递归结束条件。
+class Solution:
+    def Sum_Solution(self, n):
+        # write code here
+        res = n
+        temp = n >0 and self.Sum_Solution(n-1)
+        res = res + temp
+        return res
