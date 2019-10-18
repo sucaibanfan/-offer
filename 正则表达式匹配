@@ -1,0 +1,21 @@
+主要考虑pattern中第二个字符为*和不为*的两种情况，*前面一定有字符，所以不会pattern[0]=="*"
+第二个字符为*的时候，前面可以是和s[0]相等也可以是"."，然后有四种情况：
+1、*前面和s不相等,比较*后面的
+如果*前面和s相等：2、*前面出现0次，pattern右移一位；3、*前面出现一次刚好匹配，两个都右移一位；
+4、*前面出现多次能和s匹配，这时应该s右移一位再和pattern作比较
+class Solution:
+    # s, pattern都是字符串
+    def match(self, s, pattern):
+        # write code here
+        if s == pattern:
+            return True
+        if not pattern:
+            return False
+        if len(pattern) > 1 and pattern[1] == "*":
+            if s and (s[0] == pattern[0] or pattern[0] == "."):
+                return self.match(s,pattern[2:]) or self.match(s[1:],pattern[2:]) or self.match(s[1:],pattern)
+            else:
+                return self.match(s,pattern[2:])
+        elif s and (s[0] == pattern[0] or pattern[0] == "."):
+            return self.match(s[1:],pattern[1:])
+        return False
