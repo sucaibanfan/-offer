@@ -1,0 +1,19 @@
+定义前后两个节点，如果后节点的值和前面节点的值相等，后节点右移直到不相等或者为None
+class Solution:
+    def deleteDuplication(self, pHead):
+        # write code here
+        head = ListNode(None)
+        head.next = pHead
+        pre = head
+        cur = pHead
+        while cur:
+            if cur.next and cur.next.val == cur.val:
+                temp = cur.next
+                while temp and temp.val == cur.val:
+                    temp = temp.next
+                pre.next = temp
+                cur = temp
+            else:
+                pre = cur
+                cur = pre.next
+        return head.next
