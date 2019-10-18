@@ -1,0 +1,19 @@
+参考https://blog.csdn.net/qq_20141867/article/details/80931915
+让慢指针一次移动一步，快指针每一次多移动一步，如果有环一定会相遇，相遇后慢指针回到头结点，和快指针同时每次移动一步，会在入口点相遇
+class Solution:
+    def EntryNodeOfLoop(self, pHead):
+        # write code here
+        if not pHead or not pHead.next or not pHead.next.next:
+            return None
+        slow = pHead.next
+        fast = slow.next
+        while fast != slow and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        if slow == fast:
+            slow = pHead
+            while slow != fast:
+                slow = slow.next
+                fast = fast.next
+            return slow
+        return None
