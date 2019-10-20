@@ -1,0 +1,49 @@
+前面有做过 二叉树的镜像，回顾一下二叉树镜像的含义，用递归方法
+class Solution:
+    def Symmetrical(self, left,right):
+        if left == None and right == None:
+            return True
+        if left and right:
+            return left.val == right.val and self.Symmetrical(left.left,right.right) and self.Symmetrical(left.right,right.left)
+        else:
+            return False
+    def isSymmetrical(self, pRoot):
+        # write code here
+        if not pRoot:
+            return True
+        return self.Symmetrical(pRoot.left,pRoot.right)
+        
+非递归方法
+出栈的两个节点，都为空，继续（空节点也可以入栈，值为None）
+出栈的两个节点一个为空，一个不为空，返回False
+出栈的两个节点的值不相等，返回False
+比较完这两个节点之后，需要将这两个节点的子节点入栈（即使子节点为空，也要入栈，值为None）。由于是检查对称二叉树，因此左右子节点要分别对应入栈，即p.left和q.right一块，p.right和q.left一块。
+然后再进行下一次循环，若栈为空时，仍没有返回False，那么这颗二叉树就是对称，返回True
+
+class Solution:
+    def isSymmetrical(self, pRoot):
+        # write code here
+        if pRoot == None:
+            return True
+        if pRoot.left == None and pRoot.right == None:
+            return True
+        p = pRoot.left
+        q = pRoot.right
+        stack = [p,q]    # 空节点也可以入栈，为None，但是空节点就没有左右子节点了。
+        while stack:
+            p = stack.pop()
+            q = stack.pop()
+            if p == None and q == None:    # 都为空继续
+                continue
+            elif p == None or q == None:   # 有一个不为空，另一个为空，返回False
+                return False
+            elif p.val != q.val:           # 值不相等，不对称，返回False
+                return False
+            else:                          
+            # 当两个节点，都不为空，且值相等时，将两个节点对应的四个子节点
+            # 按照顺序依次入栈， 使之两两贴在一块，出栈的时候一块出栈，进行比较。
+            	stack.append(p.left)
+            	stack.append(q.right)
+            	stack.append(p.right)
+            	stack.append(q.left)
+        return True
