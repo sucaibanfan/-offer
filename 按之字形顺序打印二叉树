@@ -1,0 +1,21 @@
+进行层次遍历，用一个布尔值标记当前是否需要逆序
+class Solution:
+    def Print(self, pRoot):
+        res = []
+        if not pRoot:
+            return res
+        curnode = [pRoot]
+        is_Reverse = True
+        while curnode:
+            curvalue = []
+            nextnode = []
+            is_Reverse = not is_Reverse
+            for node in curnode:
+                curvalue.append(node.val)
+                if node.left:
+                    nextnode.append(node.left)
+                if node.right:
+                    nextnode.append(node.right)
+            res.append(curvalue[::-1]) if is_Reverse else res.append(curvalue)
+            curnode = nextnode
+        return res
