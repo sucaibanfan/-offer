@@ -1,0 +1,19 @@
+中序遍历，下一个结点有两种：一是当前结点的右子树的最左结点，二是当前结点的父节点或者当前结点所在左子树的父节点
+class Solution:
+    def GetNext(self, pNode):
+        # write code here
+        if not pNode:
+            return None
+        if not pNode.left and not pNode.right and not pNode.next:
+            return None
+        if pNode.right:
+            p = pNode.right
+            while p.left:
+                p = p.left
+            return p
+        while pNode.next:
+            f = pNode.next
+            if f.left == pNode:
+                return f
+            pNode = f
+        return None
