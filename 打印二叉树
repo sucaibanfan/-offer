@@ -1,3 +1,4 @@
+按之字形顺序打印二叉树
 进行层次遍历，用一个布尔值标记当前是否需要逆序
 class Solution:
     def Print(self, pRoot):
@@ -17,5 +18,27 @@ class Solution:
                 if node.right:
                     nextnode.append(node.right)
             res.append(curvalue[::-1]) if is_Reverse else res.append(curvalue)
+            curnode = nextnode
+        return res
+        
+把二叉树打印成多行
+class Solution:
+    # 返回二维列表[[1,2],[4,5]]
+    def Print(self, pRoot):
+        # write code here
+        if not pRoot:
+            return []
+        res = []
+        curnode = [pRoot]
+        while curnode:
+            curvalue = []
+            nextnode = []
+            for node in curnode:
+                curvalue.append(node.val)
+                if node.left:
+                    nextnode.append(node.left)
+                if node.right:
+                    nextnode.append(node.right)
+            res.append(curvalue)
             curnode = nextnode
         return res
