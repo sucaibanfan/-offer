@@ -1,0 +1,16 @@
+中序遍历，返回第k个元素
+class Solution:
+    def sort_node(self,pRoot):
+        if not pRoot:
+            return 
+        self.sort_node(pRoot.left)
+        sort_list.append(pRoot)
+        self.sort_node(pRoot.right)
+    def KthNode(self, pRoot, k):
+        global sort_list
+        sort_list = []
+        self.sort_node(pRoot)
+        if 0 < k and k <= len(sort_list):
+            return sort_list[k-1]
+        else:
+            return None
