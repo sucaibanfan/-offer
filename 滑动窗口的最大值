@@ -1,0 +1,15 @@
+最笨的方法，没有用到栈的一些思想，但能通过
+class Solution:
+    def maxInWindows(self, num, size):
+        if len(num) == 0:
+            return []
+        if size > len(num) or size < 1:
+            return []
+        if size == 1:
+            return num
+        res = []
+        i = 0
+        while i <= len(num) - size:
+            res.append(max(num[i:i+size]))
+            i += 1
+        return res
