@@ -1,4 +1,4 @@
-最笨的方法，没有用到栈的一些思想，但能通过
+最容易想到的方法
 class Solution:
     def maxInWindows(self, num, size):
         if len(num) == 0:
@@ -12,4 +12,25 @@ class Solution:
         while i <= len(num) - size:
             res.append(max(num[i:i+size]))
             i += 1
+        return res
+两个数组，一个储存目前滑动窗口最大值的索引，一个储存值，如果当前i和存储的第一个索引相差大于窗口值-1，说明超过滑动窗口大小，需要弹出第一个，
+如果当前值大于前面存储的值，先弹出再压入
+class Solution:
+    def maxInWindows(self, num, size):
+        if len(num) == 0:
+            return []
+        if size > len(num) or size < 1:
+            return []
+        if size == 1:
+            return num
+        queue = [0]
+        res = []
+        for i in range(1,len(num)):
+            if i-size >= queue[0]:
+                queue.pop(0)
+            while (len(queue) != 0 and num[i] > num[queue[-1]]):
+                queue.pop(-1)
+            queue.append(i)
+            if i >= size-1:
+                res.append(num[queue[0]])
         return res
