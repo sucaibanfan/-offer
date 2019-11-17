@@ -1,3 +1,22 @@
+最符合常理的思想，用一个数组模拟入栈，遇到和出栈序列当前元素一样的就出栈，看最后这个数组是否为空
+class Solution:
+    def IsPopOrder(self, pushV, popV):
+        if not (len(pushV) == len(popV) or pushV or popV):
+            return False
+        if pushV == popV:
+            return True
+        if len([i for i in popV if i not in pushV]) != 0:
+            return False
+        stack = []
+        j = 0
+        for i in range(len(pushV)):
+            stack.append(pushV[i])
+            while stack and stack[-1] == popV[j]:
+                stack.pop()
+                j += 1
+        return len(stack) == 0
+        
+ 下面是一个直接去看两个序列是否有不符合先进后出的规律的元素，一旦有就false
 先把特殊情况列出来，两个序列为空、长度不相等、元素不完全相等都为False，如果两个序列完全相等为True
 普遍情况，找到弹出序列中第一个索引小于popV[0]的元素，那么后面的元素在压入栈的序列中的索引都要小于这个元素
 第一个版本通过了，但是有个问题，如果弹出栈中这个元素和第一个元素中间隔了三个及以上，那么中间隔开这段也要服从刚才那个规则
