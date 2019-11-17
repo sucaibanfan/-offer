@@ -1,3 +1,4 @@
+思路一：选取右上角的元素开始进行比较，小于则列数减一，大于则行数加一
 # -*- coding:utf-8 -*-
 class Solution:
     # array 二维列表
@@ -18,3 +19,4 @@ class Solution:
         return False
         
         第六和七行原本是用array.shape去得到行和列，没有通过，应该是刷题提供的是python2.7.3
+思路二：可以把每一行看做有序的数组，利用二分查找。
