@@ -10,7 +10,7 @@ class Solution:
             self.minStack.append(node)
     def pop(self):
         # write code here
-        if self.list[-1] == self.minStack[-1]:
+        if self.list[-1] == self.minStack[-1]: %minStack[-1]是list里面这个元素之前的所有元素里最小的那个，如果list要pop这个那么minstack也不能留
             self.minStack.pop()
         self.list.pop()
     def top(self):
