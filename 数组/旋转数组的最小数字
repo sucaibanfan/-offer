@@ -1,3 +1,15 @@
+一个很简单的思路，只要找到前面一个数字大于后面一个数字，返回后面这个，但是如果数组很大，时间复杂度应该不行
+运行时间：1325ms，占用内存：7144k
+class Solution:
+    def minNumberInRotateArray(self, rotateArray):
+        if len(rotateArray) == 0:
+            return 0
+        for i in range(len(rotateArray)-1):
+            if rotateArray[i] > rotateArray[i+1]:
+                return rotateArray[i+1]
+        return rotateArray[0]
+方法二：用二分法，但是出现很多相同元素的时候无法判断mid属于前一个递增序列还是后一个递增序列的时候还是直接查找。
+运行时间：1316ms，占用内存：5728k
 class Solution:
     def minNumberInRotateArray(self, rotateArray):
         left = 0
