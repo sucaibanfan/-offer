@@ -12,7 +12,7 @@ class Solution:
         if k > len(a):
             return None
         return a[-k]
-解法2
+解法2：两个指针，一个先移动K步，然后同步移动，后一个指向链表尾的时候，前一个指向的是倒数第K个
 class Solution:
     def FindKthToTail(self, head, k):
         # write code here
