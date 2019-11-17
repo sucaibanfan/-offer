@@ -1,0 +1,12 @@
+首先会想到排序，但是题目要求稳定的话，直接插入排序、冒泡排序、归并排序是稳定的内排序算法
+但其实用不着排序，直接奇数一个数组，偶数一个数组，然后加起来。
+class Solution:
+    def reOrderArray(self, array):
+        # write code here
+        odd = []
+        for i in range(0,len(array)):
+            if array[i]%2 == 1:
+                odd.append(array[i])
+        even = [i for i in array if i not in odd]
+        return odd+even
+有看到一行代码解决的：return sorted(array,key=lambda c:c%2,reverse=True)
