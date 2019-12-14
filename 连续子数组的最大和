@@ -9,3 +9,17 @@ class Solution:
             maxsum = max(maxsum+array[i],array[i])
             res = max(maxsum,res)
         return res
+
+class Solution:
+    def FindGreatestSumOfSubArray(self, array):
+        # write code here
+        length = len(array)
+        sum_arr = [0]*(length+1)
+        for i in range(length):
+            sum_arr[i+1] = sum_arr[i] + array[i]
+        print(sum_arr)
+        res = sum_arr[1] - sum_arr[0]
+        for i in range(length):
+            diff = sum_arr[i+1] - min(sum_arr[:i+1])
+            res = max(res,diff)
+        return res
